@@ -3,12 +3,11 @@ name: Build Telegram APK
 on:
   push:
     branches: [ master, main ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -25,11 +24,15 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    - name: Increase Gradle RAM
+      run: |
+        echo "org.gradle.jvmargs=-Xmx6g -XX:+HeapDumpOnOutOfMemoryError" >> gradle.properties
+
     - name: Build APK (Release)
       run: ./gradlew assembleRelease
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Telegram-APK
+        name: Telegram-App
         path: TMessagesProj/build/outputs/apk/release/
