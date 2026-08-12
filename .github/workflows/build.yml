@@ -39,6 +39,9 @@ jobs:
         path: TMessagesProj/build/outputs/apk/release/
       with:
         name: Telegram-App
+        path: TMessagesProj/build/outputs/apk/release/
+      with:
+        name: Telegram-App
         path: |
           TMessagesProj/build/outputs/apk/release/
           **/build/outputs/apk/release/*.apk
